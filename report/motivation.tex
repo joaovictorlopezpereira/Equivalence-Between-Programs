@@ -1,0 +1,73 @@
+
+Considere duas definições para o operador de produto interno entre vetores reais.
+
+A primeira corresponde à definição usual da Álgebra Linear: para $x, y \in \mathbb{R}^n$,
+\[
+  \dotprod{x}{y}
+  =
+  \sum_{i=1}^{n} x_i y_i.
+\]
+
+A segunda é uma definição recursiva. Se $x$ e $y$ forem vetores vazios (de dimensão $0$), então
+\[
+  \dotprod{x}{y} = 0.
+\]
+Caso contrário, escrevendo
+\[
+  x
+  =
+  \begin{bmatrix}
+    x_1 \\
+    x_2
+  \end{bmatrix},
+  \qquad
+  y
+  =
+  \begin{bmatrix}
+    y_1 \\
+    y_2
+  \end{bmatrix},
+\]
+onde $x_1, y_1 \in \mathbb{R}$ e $x_2, y_2 \in \mathbb{R}^{n-1}$, define-se
+\[
+  \dotprod{x}{y}
+  =
+  x_1 y_1 + \dotprod{x_2}{y_2}.
+\]
+
+É natural esperar que ambas as definições sejam equivalentes. Entretanto, quando implementadas em uma linguagem imperativa como Julia, essa equivalência não fica evidente, pois a implementação da definição por somatório normalmente utiliza um laço de repetição:
+
+\begin{code}
+function dotprod1(xs, ys)
+    s = 0
+    for i in eachindex(xs)
+        s = s + xs[i] * ys[i]
+    end
+    return s
+end
+\end{code}
+
+Enquanto isso, a definição recursiva é implementada de forma bastante direta:
+
+\begin{code}
+function dotprod2(xs, ys)
+    return xs[1] * ys[1] + dotprod1(xs[2:end], ys[2:end])
+end
+\end{code}
+
+Embora ambos os programas calculem o produto interno, provar sua equivalência diretamente a partir dessas implementações é pouco natural, pois a estrutura do primeiro programa difere significativamente da definição matemática correspondente.
+
+Em contraste, em Haskell as duas implementações refletem quase literalmente suas respectivas definições matemáticas:
+
+\begin{code}
+dotprod1 :: [Double] -> [Double] -> Double
+dotprod1 xs ys = sum (zipWith (*) xs ys)
+\end{code}
+
+\begin{code}
+dotprod2 :: [Double] -> [Double] -> Double
+dotprod2 [] [] = 0
+dotprod2 (x:xs) (y:ys) = x*y + dotprod1 xs ys
+\end{code}
+
+Nesse caso, uma prova por indução da equivalência entre os programas torna-se praticamente uma tradução da prova da equivalência entre as definições matemáticas.

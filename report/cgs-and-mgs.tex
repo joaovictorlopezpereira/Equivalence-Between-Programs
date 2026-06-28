@@ -1,0 +1,32 @@
+
+% Add some context here about what GS is
+
+\begin{code}
+function Classical-Gram-Schmidt(A)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t a_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return Q
+end
+\end{code}
+
+Uma versão alternativa desse algoritmo, conhecida como Gram-Schmidt Modificado é:
+
+\begin{code}
+function Modified-Gram-Schmidt(A)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t v_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return Q
+end
+\end{code}
+
+Apesar de aparentar não haver nenhuma diferença entre os dois blocos de códigos acima, no segundo bloco, a função teve seu nome alterado, juntamente com um único caractere no laço de repetição interno, onde $a_i$ se tornou $v_i$. Apesar de não ser nem um pouco óbvio, ambos esses algoritmos calculam exatamente a mesma coisa.

@@ -1,0 +1,8 @@
+
+Uma característica marcante de linguagens de programação funcionais é que seus programas costumam se assemelhar muito mais à definições matemáticas do que em linguagens imperativas, onde os programas se assemelham à uma sequência de passos que a computador deve seguir para calcular o desejado. Em vez de descrever uma sequência de instruções que modifica o estado da memória, uma função funcional especifica diretamente a relação entre seus argumentos e seu resultado.
+
+Para a definição recursiva em Haskell do produto interno, por exemplo, sua implementação é praticamente uma transcrição literal da definição matemática. Cada equação da definição matemática corresponde a uma equação do programa. Em particular, os padrões utilizados na definição da função desempenham exatamente o papel da distinção de casos feita na definição recursiva.
+
+Essa semelhança entre definições matemáticas e programas não ocorre por acaso. Em Haskell, funções são livres de efeitos colaterais: seu resultado depende exclusivamente dos argumentos recebidos, sem modificar qualquer estado externo. Consequentemente, uma chamada de função pode ser encarada simplesmente como uma expressão matemática cujo valor é determinado pelas equações que definem essa função.
+
+Essa propriedade permite tratar programas da mesma maneira que tratamos expressões algébricas. Assim como é possível substituir uma expressão matemática por outra que lhe seja igual, também é possível substituir uma chamada de função pela expressão correspondente dada por sua definição. Esse princípio recebe o nome de raciocínio equacional e constitui uma das principais ferramentas para demonstrar propriedades e equivalência entre programas funcionais.
