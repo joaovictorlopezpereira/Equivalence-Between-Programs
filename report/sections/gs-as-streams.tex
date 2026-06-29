@@ -1,0 +1,28 @@
+
+Com os operadores introduzidos na seção anterior, podemos reescrever tanto o algoritmo clássico quanto o algoritmo modificado de Gram-Schmidt em termos de streams. A ideia central é observar que os laços principais de ambos os algoritmos possuem um comportamento acumulativo: a cada iteração, o estado do algoritmo é atualizado a partir do estado produzido na iteração anterior. Em particular, essas atualizações podem ser vistas como análogas a somatórios e produtórios. Em uma versão matemática de ambos os algoritmos, seus laços iterativos seriam escritos como
+\[
+  v_i = \left(I - \sum_{j=1}^{i-1} q_j q_j\t \right) a_i
+\]
+e
+\[
+  v_i = \left(\prod_{j=i-1}^{1} (I - q_j q_j\t)\right) a_i.
+\]
+Os operadores $\Sigma$ e $\Pi$ permitem capitarmos isso, permitindo substituir laços imperativos por especificações equacionais sobre streams.
+
+Essa reformulação não altera o significado dos algoritmos, mas os expressa em uma linguagem mais próxima da matemática. Como consequência, propriedades dos algoritmos passam a ser estabelecidas por manipulação de equações, em vez de raciocínio sobre estados de execução, variáveis mutáveis ou índices de iteração. Nas subseções seguintes, apresentaremos as versões em streams dos algoritmos clássico e modificado de Gram-Schmidt, que servirão de base para a demonstração de sua equivalência.
+
+\begin{code}
+Classical-Gram-Schmidt $a$ = $q$
+    where
+        $v$ = $(I - \Sigma p) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+
+Modified-Gram-Schmidt $a$ = $q$
+    where
+        $v$ = $(\Pi(I - p)) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+\end{code}
+
+Essas versões do Gram-Schmidt apresentam a vantagem de não dependerem de índices e de não realizarem mutações, permitindo a aplicação dos métodos que conhecemos para demonstrar a equivalência entre esses programas.

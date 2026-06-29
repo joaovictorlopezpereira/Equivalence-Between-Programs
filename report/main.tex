@@ -1,30 +1,32 @@
-\documentclass[twocolumn, 11pt]{article}
+\documentclass[twocolumn, 10pt]{article}
 
 \input{header.tex}
 
 \begin{document}
   \maketitle
 
-  % 1st: Two students interested in semirings were asked to write different definitions of dotprod
   \section{Motivação}
-  \input{motivation.tex}
+  \input{sections/motivation.tex}
 
   \section{Programas como Definições Matemáticas}
-  \input{programs-as-math.tex}
+  \input{sections/programs-as-math.tex}
 
-  \section{Estudo de Caso: Algoritmo Gram-Schmidt}
+  \section{Estudo de Caso: Algoritmo de Gram-Schmidt}
     \subsection{Gram-Schmidt Clássico e Modificado}
-    \input{cgs-and-mgs.tex}
+    \input{sections/cgs-and-mgs.tex}
 
     \subsection{Operações com Streams e como Provar Teoremas sobre Streams}
-    \input{}
+    \input{sections/streams.tex}
 
     \subsection{Reescrita dos Algoritmos usando Streams}
-    \input{}
+    \input{sections/gs-as-streams.tex}
 
+    % TODO: Should the $p Sum p = 0$ proof be here?
     \subsection{Prova de Equivalência}
-    \input{}
+    \input{sections/equivalence-proof.tex}
 
-
+  % TODO: Write this section
+  \section*{Conclusão}
+  \input{sections/conclusion.tex}
 
 \end{document}

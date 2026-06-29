@@ -1,0 +1,43 @@
+
+Para mostrar que ambos os algoritmos são iguais, basta provarmos que a única linha de código que difere ambos calcula a mesma coisa. Em outras palavras, basta provarmos que as streams $(I - \Sigma p) a$ e $(\Pi(I - p)) a$ são iguais.
+
+\begin{theorem}\label{thm: equality-of-streams}
+  Seja $I$ a stream de matrizes identidade e sejam $a$, $v$, $q$ e $p$ streams tais que
+  \begin{itemize}
+    \item $v = (I - \Sigma p) a$,
+    \item $q = v / \norm{v}$, e
+    \item $p = qq\t$.
+  \end{itemize}
+  Então
+  \[I - \Sigma p = \Pi (I - p).\]
+\end{theorem}
+\begin{proof}
+  Para provar a igualdade, provaremos que $I - \Sigma p$ é igual a $I : (I - p)(I - \Sigma p)$ e ...
+
+  \begin{calculation}[=]
+  I - \Sigma p
+  \step{Definição ($I$ e $\Sigma$)}
+  (I : I) - (0 : p + \Sigma p)
+  \step{Definição ($-$)}
+  (I - 0) : (I - (p + \Sigma p))
+  \step{Simplificação}
+  I : I - p - \Sigma p
+  \step{$p \Sigma p = 0$ pelo Teorema \ref{thm: p-Sigma-p-is-0}}
+  I : I - p - \Sigma p + p \Sigma p
+  \step{Distributividade}
+  I : (I - p) (I - \Sigma p)
+  \end{calculation}
+
+  Essa prova é melhor lida no estilo \emph{meet-in-the-middle}. Caso contrário, o passo que $p \Sigma p$ é adicionado parece ser bastante arbitrário, quando na verdade é exatamente o que a ponte entre o que temos e o que queremos. Por fim, instanciamos o Lema \ref{lemma: Pi-universal-prop} com $b = I - \Sigma p$ e $a = I - p$:
+
+  \begin{calculation}[\calciff]
+    I : (I - p) (I - \Sigma p)
+    \step{Lema \ref{lemma: Pi-universal-prop}}
+    I - \Sigma p = \Pi(I - p)
+  \end{calculation}
+\end{proof}
+
+A hipótese $p \Sigma p = 0$ começa a fazer mais sentido se assumirmos a corretude do programa. A igualdade $p \Sigma p = 0$ é equivalence a afirmar que o vetor mais recente da base ortonormal é ortogonal à soma de todos os vetores que vieram antes, o que é verdadeiro por ele ser ortogonal a cada um deles. Sua demonstração pode ser encontrada no Teorema \ref{thm: p-Sigma-p-is-0}.
+
+% \begin{theorem}\label{thm: p-Sigma-p-is-0}
+% \end{theorem}

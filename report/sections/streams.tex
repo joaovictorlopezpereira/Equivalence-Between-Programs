@@ -1,0 +1,63 @@
+Assim como no exemplo do produto interno, é conveniente reescrever os algoritmos clássico e modificado de Gram-Schmidt em uma linguagem declarativa suficientemente próxima da matemática. Dessa forma, os algoritmos deixam de ser descritos como sequências de instruções imperativas e passam a ser especificados por equações, permitindo que sua equivalência seja demonstrada por raciocínio equacional.
+
+Embora o algoritmo de Gram-Schmidt seja tradicionalmente apresentado como uma transformação sobre uma sequência finita de vetores, sua definição pode ser estendida naturalmente para sequências infinitas. Além disso, trata-se de um algoritmo \nonport{online}, onde cada vetor ortogonalizado depende apenas dos vetores já processados, sem necessidade de conhecer os elementos futuros da entrada. Por esse motivo, adotaremos \emph{streams} como estrutura de dados fundamental. Essa escolha também simplifica o tratamento matemático dos algoritmos, eliminando manipulações explícitas de índices e permitindo o uso de técnicas de prova já desenvolvidas para streams.
+
+Seguiremos o cálculo de streams apresentado por Hinze em \cite{Hinze2010} Nessa linguagem, operações como soma, subtração, multiplicação e divisão são definidas elemento a elemento sobre streams. Embora essas operações correspondam, em Haskell, a aplicações de \var{zipWith} sobre listas infinitas, é importante distinguir a linguagem de programação da linguagem matemática utilizada para especificar streams. A sintaxe é bastante semelhante, mas o cálculo de streams é uma formalização matemática, e não um subconjunto de Haskell.
+
+Como exemplo, Hinze especifica a sequência de Fibonacci em Haskell por
+
+\begin{code}
+f = 0 : g
+g = 1 : zipWith (+) f g
+\end{code}
+
+Enquanto sua especificação em cálculo de streams é simplesmente
+
+\begin{code}
+$f$ = $0 : g$,
+$g$ = $1 : f + g$.
+\end{code}
+
+Observe que a segunda especificação é praticamente uma tradução da primeira: a operação \var{zipWith (+)} é substituída pela soma entre streams. Segundo a terminologia de Hinze, esse sistema de equações é \emph{admissível}, pois cada equação determina explicitamente o primeiro elemento do stream e todas as chamadas recursivas ocorrem apenas na cauda. Consequentemente, a especificação determina univocamente a sequência de Fibonacci.
+
+Ao descrevermos os algoritmos de Gram-Schmidt nesse mesmo formalismo, poderemos utilizar operadores sobre streams que desempenham o mesmo papel dos acumuladores empregados nas versões imperativas dos algoritmos, mas preservando uma descrição puramente equacional, adequada às demonstrações desenvolvidas nas próximas seções.
+
+Além das operações aritméticas elemento a elemento, utilizaremos dois operadores fundamentais sobre streams, denotados por $\Sigma$ e $\Pi$. Intuitivamente, esses operadores armazenam, em cada posição da stream resultante, respectivamente as somas e os produtos parciais dos elementos já processados da stream de entrada.
+
+\begin{definition}\label{def: Sigma}
+  Seja $a$ uma stream qualquer e $0$ a stream constante cujos elementos são elementos neutros da operação de $+$ do tipo de $a$.
+  \[\Sigma a = (0 : a + \Sigma a).\]
+\end{definition}
+
+\begin{definition}\label{def: Pi}
+  Seja $a$ uma stream qualquer e $1$ a stream constante cujos elementos são elementos neutros da operação de $\cdot$ do tipo de $a$.
+  \[\Pi a = (1 : a \cdot \Pi a).\]
+\end{definition}
+
+Esses operadores desempenham um papel análogo ao de \var{scanl} em Haskell: cada posição da stream resultante contém o resultado acumulado da operação correspondente até aquele instante. Entretanto, suas definições são puramente equacionais, caracterizando $\Sigma$ e $\Pi$ como pontos fixos de equações simples sobre streams.
+
+Quando as streams são constituídas por matrizes, a stream constante $0$ é formada por matrizes nulas, enquanto a stream constante $1$ é formada por matrizes identidade (frequentemente denotadas por $I$). Essa convenção será adotada nas definições dos algoritmos de Gram-Schmidt apresentadas na próxima seção.
+
+Os operadores $\Sigma$ e $\Pi$ são completamente caracterizados pelas equações que os definem.
+
+\begin{lemma}[Propriedade Universal de $\Sigma$]\label{lemma: Sigma-universal-prop}
+Sejam $a$ e $b$ streams. Então,
+\[
+  b = \Sigma a
+  \iff
+  b = 0 : (a + b).
+\]
+\end{lemma}
+
+\begin{lemma}[Propriedade Universal de $\Pi$]\label{lemma: Pi-universal-prop}
+Sejam $a$ e $b$ streams. Então,
+\[
+  b = \Pi a
+  \iff
+  b = 1 : (a \cdot b).
+\]
+\end{lemma}
+
+As duas implicações de cada equivalência possuem interpretações distintas. A implicação da esquerda para a direita afirma que os operadores $\Sigma$ e $\Pi$ satisfazem as equações recursivas que os definem. Já a implicação da direita para a esquerda estabelece uma propriedade de unicidade: qualquer stream que satisfaça a mesma equação coincide necessariamente com a stream produzida pelo operador correspondente.
+
+Essa propriedade decorre da unicidade da solução de equações admissíveis sobre streams, conforme discutido em \cite{Hinze2010}, e será utilizada repetidamente nas demonstrações desenvolvidas ao longo deste trabalho.
