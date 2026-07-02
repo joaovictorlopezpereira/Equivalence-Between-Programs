@@ -31,7 +31,7 @@ Para mostrar que ambos os algoritmos são iguais, basta provarmos que a única l
   Essa prova é melhor lida no estilo \emph{meet-in-the-middle}. Caso contrário, o passo que $p \Sigma p$ é adicionado parece ser bastante arbitrário, quando na verdade é exatamente o que a ponte entre o que temos e o que queremos. Por fim, instanciamos o Lema \ref{lemma: Pi-universal-prop} com $b = I - \Sigma p$ e $a = I - p$:
 
   \begin{calculation}[\calciff]
-    I : (I - p) (I - \Sigma p)
+    I - \Sigma p = I : (I - p) (I - \Sigma p)
     \step{Lema \ref{lemma: Pi-universal-prop}}
     I - \Sigma p = \Pi(I - p)
   \end{calculation}

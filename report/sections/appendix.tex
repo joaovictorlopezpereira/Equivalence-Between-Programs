@@ -1,0 +1,52 @@
+
+\begin{theorem}\label{thm: p-Sigma-p-is-0}
+  Seja $I$ a stream de matrizes identidade e sejam $a$, $v$, $q$ e $p$ streams tais que
+  \begin{itemize}
+    \item $v = (I - \Sigma p) a$,
+    \item $q = v / \norm{v}$, e
+    \item $p = qq\t$.
+  \end{itemize}
+  Então
+  \[p \Sigma p = 0.\]
+\end{theorem}
+\begin{proof}
+  \begin{calculation}[=]
+    p \Sigma p
+    \step{Definição ($p$, $q$ e $v$)}
+    q \dfrac{((I - \Sigma p) a)\t}{\norm{v}} \Sigma p
+    \step{Transposta do Produto}
+    q \dfrac{a\t}{\norm{v}} (I - \Sigma p)\t \Sigma p
+    \step{Seja $\alpha = q \dfrac{a\t}{\norm{v}}$}
+    \alpha (I - \Sigma p)\t \Sigma p
+    \step{Distributividade}
+    \alpha \left(\Sigma p - (\Sigma p)\t \Sigma p \right)
+    \step{$(\Sigma p)\t = \Sigma p$ e portanto $(\Sigma p)\t \Sigma p = (\Sigma p)^2$}
+    \alpha \left(\Sigma p - (\Sigma p)^2 \right)
+  \end{calculation}
+
+  Como $p \Sigma p = \alpha \left(\Sigma p - (\Sigma p)^2 \right)$, para mostrar que $p \Sigma p = 0$, basta mostrar que $\Sigma p - (\Sigma p)^2 = 0$. O que faremos, na verdade, é mostrar que, ao invés de $\Sigma p - (\Sigma p)^2$ ser uma solução da stream que define a stream de zeros, mostraremos que ambas essas streams são soluções de uma terceira equação:
+
+  \begin{calculation}[=]
+    \Sigma p - (\Sigma p)^2
+    \step{Definição (\ref{def: Sigma})}
+    (0 : p + \Sigma p) -  (0 : p + \Sigma p)^2
+    \step{Distributividade}
+    (0 : p + \Sigma p) - (0 : p^2 + p \Sigma p + (\Sigma p)p + (\Sigma p)^2)
+    \step{Definição ($-$)}
+    (0 : p + \Sigma p - p^2 - p \Sigma p - (\Sigma p)p - (\Sigma p)^2)
+    \step{Transposta do Produto e $p\t = p$}
+    (0 : p + \Sigma p - p^2 - p \Sigma p - (p \Sigma p)\t - (\Sigma p)^2)
+    \step{$p^2 = p$ e Simplificação}
+    (0 : \Sigma p - p \Sigma p - (p \Sigma p)\t - (\Sigma p)^2)
+    \step{Comutatividade ($-$)}
+    (0 : \Sigma p - (\Sigma p)^2 - p \Sigma p - (p \Sigma p)\t)
+    \step{Cálculos anteriores}
+    \left(0 : \Sigma p - (\Sigma p)^2 - \alpha \left( \Sigma p - (\Sigma p)^2 \right) - \left(\alpha \left( \Sigma p - (\Sigma p)^2 \right)\right)\t\right)
+  \end{calculation}
+
+  Desse cálculo, percebemos que $\Sigma p - (\Sigma p)^2$ é solução da recorrência
+  \[
+    x = 0 : x - \alpha x - (\alpha x)\t.
+  \]
+  Porém, perceba que essa recorrência possui zero como sua única solução, o que nos permite concluir que ambas as soluções $0$ e $\Sigma p - (\Sigma p)^2$ são iguais.
+\end{proof}
