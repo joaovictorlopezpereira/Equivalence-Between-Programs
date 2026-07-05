@@ -51,7 +51,7 @@ Enquanto isso, a definição recursiva é implementada de forma bastante direta:
 
 \begin{code}
 function dotprod2(xs, ys)
-    return xs[1] * ys[1] + dotprod1(xs[2:end], ys[2:end])
+    return xs[1] * ys[1] + dotprod2(xs[2:end], ys[2:end])
 end
 \end{code}
 
@@ -67,7 +67,7 @@ dotprod1 xs ys = sum (zipWith (*) xs ys)
 \begin{code}
 dotprod2 :: [Double] -> [Double] -> Double
 dotprod2 [] [] = 0
-dotprod2 (x:xs) (y:ys) = x*y + dotprod1 xs ys
+dotprod2 (x:xs) (y:ys) = x*y + dotprod2 xs ys
 \end{code}
 
 Nesse caso, uma prova por indução da equivalência entre os programas torna-se praticamente uma tradução da prova da equivalência entre as definições matemáticas.

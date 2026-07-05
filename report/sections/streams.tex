@@ -3,7 +3,7 @@ Assim como no exemplo do produto interno, é conveniente reescrever os algoritmo
 
 Embora o algoritmo de Gram-Schmidt seja tradicionalmente apresentado como uma transformação sobre uma sequência finita de vetores, sua definição pode ser estendida naturalmente para sequências infinitas. Além disso, trata-se de um algoritmo \nonport{online}, onde cada vetor ortogonalizado depende apenas dos vetores já processados, sem necessidade de conhecer os elementos futuros da entrada. Por esse motivo, adotaremos \emph{streams} como estrutura de dados fundamental. Essa escolha também simplifica o tratamento matemático dos algoritmos, eliminando manipulações explícitas de índices e permitindo o uso de técnicas de prova já desenvolvidas para streams.
 
-Seguiremos o cálculo de streams apresentado por Hinze em \cite{Hinze2010} Nessa linguagem, operações como soma, subtração, multiplicação e divisão são definidas elemento a elemento sobre streams. Embora essas operações correspondam, em Haskell, a aplicações de \var{zipWith} sobre listas infinitas, é importante distinguir a linguagem de programação da linguagem matemática utilizada para especificar streams. A sintaxe é bastante semelhante, mas o cálculo de streams é uma formalização matemática, e não um subconjunto de Haskell.
+Seguiremos o cálculo de streams apresentado por Hinze em \cite{Hinze2010}. Nessa linguagem, operações como soma, subtração, multiplicação e divisão são definidas elemento a elemento sobre streams. Embora essas operações correspondam, em Haskell, a aplicações de \var{zipWith} sobre listas infinitas, é importante distinguir a linguagem de programação da linguagem matemática utilizada para especificar streams. A sintaxe é bastante semelhante, mas o cálculo de streams é uma formalização matemática, e não um subconjunto de Haskell.
 
 Como exemplo, Hinze especifica a sequência de Fibonacci em Haskell por
 
@@ -19,7 +19,7 @@ $f$ = $0 : g$,
 $g$ = $1 : f + g$.
 \end{code}
 
-Observe que a segunda especificação é praticamente uma tradução da primeira: a operação \var{zipWith (+)} é substituída pela soma entre streams. Segundo a terminologia de Hinze, esse sistema de equações é \emph{admissível}, pois cada equação determina explicitamente o primeiro elemento do stream e todas as chamadas recursivas ocorrem apenas na cauda. Consequentemente, a especificação determina univocamente a sequência de Fibonacci.
+Observe que a segunda especificação é praticamente uma tradução da primeira: a operação \var{zipWith (+)} é substituída pela soma entre streams. Segundo a terminologia de Hinze, esse sistema de equações é \emph{admissível}, pois cada equação determina explicitamente o primeiro elemento do stream e todas as chamadas recursivas ocorrem apenas na cauda. Consequentemente, a especificação determina univocamente uma sequência única.
 
 Ao descrevermos os algoritmos de Gram-Schmidt nesse mesmo formalismo, poderemos utilizar operadores sobre streams que desempenham o mesmo papel dos acumuladores empregados nas versões imperativas dos algoritmos, mas preservando uma descrição puramente equacional, adequada às demonstrações desenvolvidas nas próximas seções.
 
