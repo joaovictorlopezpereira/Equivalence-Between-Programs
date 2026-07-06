@@ -1,0 +1,112 @@
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usetheme{Darmstadt}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{left=0.4cm, right=0.4cm}
+\usepackage{csquotes}
+\usepackage{upquote}
+\usepackage{listings}
+\usepackage{hyperref}
+\setbeamertemplate{navigation symbols}{}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage[style=numeric, backend=biber]{biblatex}
+\addbibresource{repertoire.bib}
+\graphicspath{{figures/}}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\lstnewenvironment{code}[1][]{
+  \lstset{
+    basicstyle=\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=none,
+    basewidth=0.5em,
+    aboveskip=13pt,
+    belowskip=0pt,
+    #1
+  }
+}{}
+
+\newcommand{\excerptpage}[2]{
+  \begin{center}
+    \textit{#1}\\
+        --- #2.
+  \end{center}
+}
+
+\newcommand{\var}[1]{\texttt{#1}}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+% Math
+%->8-------------------------------------------------------------------------------------------8<-%
+\usepackage{amsmath, amssymb, mathdots, scalerel, mathtools, calcs}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\dotprod}[2]{\left\langle #1 \, \middle| \, #2 \right\rangle}
+\renewcommand{\t}{^{\scriptscriptstyle\mathsf{T}\mkern-1mu}}
+\newcommand{\st}{\,\,|\,\,}
+\newcommand{\calciff}{\Updownarrow}
+
+% \declaretheoremstyle[
+%   headformat=\NAME~\NUMBER\let\thmcaption\NOTE\ifx\thmcaption\empty\else \textbf{\thmcaption}. \newline \fi,
+%   headpunct={},
+%   postheadspace=0.5em,
+%   headfont=\bfseries,
+%   notefont=\bfseries,
+%   bodyfont=\normalfont,
+%   spaceabove=0.3cm,
+%   spacebelow=0.3cm
+% ]{definition-style}
+
+% \declaretheorem[
+%   style=definition-style,
+%   name=Definição,
+% ]{definition}
+
+% \renewenvironment{proof}{
+%   \setlength{\parindent}{0pt}
+%   \setlength{\parskip}{0.6em}
+%   \noindent\textbf{Demonstração. } \par\nopagebreak
+% }{
+%   \qed
+% }
+
+% \declaretheoremstyle[
+%   headformat=\NAME~\NUMBER\let\thmcaption\NOTE\ifx\thmcaption\empty\else \textbf{\thmcaption}. \newline \fi,
+%   notefont=\bfseries,
+%   headpunct={},
+%   postheadspace=0.5em,
+%   headfont=\bfseries,
+%   bodyfont=\normalfont,
+%   spaceabove=0.3cm,
+%   spacebelow=0.3cm
+% ]{theorem-no-title}
+
+% \declaretheorem[
+%   style=theorem-no-title,
+%   name=Teorema
+% ]{theorem}
+
+% \declaretheorem[
+%   style=theorem-no-title,
+%   name=Lema
+% ]{lemma}
+%->8-------------------------------------------------------------------------------------------8<-%
+
+%->8-------------------------------------------------------------------------------------------8<-%
+\title{Estudo de Caso: Gram Schmidt Clássico e Modificado}
+\subtitle{Raciocício Equacional para Provar Equivalência entre Programas}
+\author{João Victor Lopez Pereira}
+\institute{Instituto de Computação -- UFRJ}
+\date{\today}
+%->8-------------------------------------------------------------------------------------------8<-%

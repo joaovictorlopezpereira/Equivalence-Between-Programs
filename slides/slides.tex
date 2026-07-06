@@ -1,0 +1,148 @@
+\documentclass{beamer}
+
+\input{header.tex}
+
+\begin{document}
+
+  \frame{\titlepage}
+
+  \section{Motivação}
+  \begin{frame}{Definições do Produto Interno}
+    \begin{center}
+      Suponha que dois alunos tenham sido solicitados para definir matematicamente o produto interno entre dois vetores reais.
+    \end{center}
+  \end{frame}
+
+  \begin{frame}{Definições do Produto Interno}
+    Sejam $x, y \in \mathbb{R}^n$.
+
+    \pause
+
+    \vfill
+
+    \begin{minipage}[t]{0.45\textwidth}
+        Definição do aluno 1:
+        \vspace{0.5cm}
+        \begin{itemize}
+          \item $\dotprod{x}{y} = \displaystyle\sum_{i=1}^{n} x_i y_i$
+        \end{itemize}
+    \end{minipage}
+    \pause
+    \hfill
+    \vrule
+    \hfill
+    \begin{minipage}[t]{0.50\textwidth}
+        Definição do aluno 2:
+        \vspace{0.5cm}
+        \begin{itemize}
+          \item $\dotprod{\begin{bmatrix} \hphantom{a} \end{bmatrix}}{\begin{bmatrix} \hphantom{a} \end{bmatrix}} = 0 \quad$ se $n = 0$. \pause
+          \vspace{0.5cm}
+          \item $\dotprod{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}}{\begin{bmatrix} y_1 \\ y_2 \end{bmatrix}} = x_1 y_1 + \dotprod{x_2}{y_2}$,
+
+          \vspace{0.3cm}
+          caso contrário, onde $x_1, y_1 \in \mathbb{R}$ e $x_2, y_2 \in \mathbb{R}^{n-1}$.
+        \end{itemize}
+    \end{minipage}
+    \vfill
+  \end{frame}
+
+  \begin{frame}{Definições do Produto Interno}
+    \begin{center}
+      Suponha que os mesmos dois alunos tenham sido solicitados para escrever suas implementações em Julia.
+    \end{center}
+  \end{frame}
+
+  \begin{frame}[fragile]{Definições do Produto Interno}
+
+
+    \begin{minipage}[t]{0.45\textwidth}
+        Definição do aluno 1:
+        \vspace{0.5cm}
+        \begin{code}
+function dotprod1(x, y)
+    s = 0
+    for i in eachindex(x)
+        s += x[i] * y[i]
+    end
+    return s
+end
+        \end{code}
+    \end{minipage}
+    \pause
+    \hfill
+    \vrule
+    \hfill
+    \begin{minipage}[t]{0.50\textwidth}
+        Definição do aluno 2:
+        \vspace{0.5cm}
+        \begin{code}
+function dotprod2(x, y)
+    return x[1] * y[1] +
+           dotprod2(x[2:end],
+                    y[2:end])
+end
+        \end{code}
+    \end{minipage}
+    \vfill
+  \end{frame}
+
+  \begin{frame}{Definições do Produto Interno}
+    Suponha que os alunos se reunam após escrever essas implementações. Eles olham um o código do outro e pensam: Por que essas implementações são iguais/equivalentes?
+
+    \pause
+    \vspace{0.5cm}
+
+    \begin{itemize}
+      \item Não é óbvio; \pause \\[0.2cm]
+      \item A linguagem utilizada não ajuda muito; \pause \\[0.2cm]
+      \item O esperado é ambos os alunos voltarem para a linguagem matemática para se convencerem da igualdade.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Definições do Produto Interno}
+    \vfill
+    \begin{minipage}[t]{0.45\textwidth}
+        Definição do aluno 1:
+        \vspace{0.5cm}
+        \begin{itemize}
+          \item $\dotprod{x}{y} = \displaystyle\sum_{i=1}^{n} x_i y_i$
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \vrule
+    \hfill
+    \begin{minipage}[t]{0.50\textwidth}
+        Definição do aluno 2:
+        \vspace{0.5cm}
+        \begin{itemize}
+          \item $\dotprod{\begin{bmatrix} \hphantom{a} \end{bmatrix}}{\begin{bmatrix} \hphantom{a} \end{bmatrix}} = 0 \quad$ se $n = 0$.
+          \vspace{0.5cm}
+          \item $\dotprod{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}}{\begin{bmatrix} y_1 \\ y_2 \end{bmatrix}} = x_1 y_1 + \dotprod{x_2}{y_2}$,
+
+          \vspace{0.3cm}
+          caso contrário, onde $x_1, y_1 \in \mathbb{R}$ e $x_2, y_2 \in \mathbb{R}^{n-1}$.
+        \end{itemize}
+    \end{minipage}
+    \vfill \pause
+    \begin{center}
+      Prova por indução...
+    \end{center}
+  \end{frame}
+
+  \begin{frame}{Definições de Produto Interno}
+    Qual é o problema da prova por indução?
+    \pause
+    \vspace{1cm}
+    \begin{itemize}
+      \item Ter que se preocupar com alguns casos; \pause \\[0.3cm]
+      \item Tomar extremo cuidado com índices; \pause \\[0.3cm]
+      \item Existem outras maneiras de provar. :)
+    \end{itemize}
+  \end{frame}
+
+
+
+  \input{thanks-and-bibliography.tex}
+
+\end{document}
+
