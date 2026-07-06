@@ -1,0 +1,182 @@
+
+\begin{frame}{Gram-Schmidt}
+  \begin{center}
+    Em particular, não provaremos a equivalência entre os produtos internos, mas sim entre diferentes versões do algoritmo de Gram-Schmidt.
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Gram-Schmidt}
+  \begin{minipage}[t]{0.45\textwidth}
+    Gram-Schmidt Clássico:
+    \vspace{0.2cm}
+    \begin{code}
+function Gram-Schmidt-C($A$)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t a_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return $Q$
+end
+    \end{code}
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Gram-Schmidt Modificado:
+    \vspace{0.1cm}
+    \begin{code}
+function Gram-Schmidt-M($A$)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t v_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return $Q$
+end
+    \end{code}
+  \end{minipage}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Gram-Schmidt}
+  \begin{minipage}[t]{0.45\textwidth}
+    Gram-Schmidt Clássico:
+    \vspace{0.2cm}
+    \begin{code}
+  for $j$ in $1:i-1$
+      $v_i$ = $v_i - q_j q_j\t a_i$
+  end
+    \end{code}
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Gram-Schmidt Modificado:
+    \vspace{0.1cm}
+    \begin{code}
+  for $j$ in $1:i-1$
+      $v_i$ = $v_i - q_j q_j\t v_i$
+  end
+    \end{code}
+  \end{minipage}
+  \vfill
+  \pause
+  \begin{minipage}[t]{0.45\textwidth}
+    \[v_i = a_i - \sum_{j=1}^{i-1} q_j q_j\t a_i\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    \[v_i = \left(\prod_{j=i-1}^{1} \left(I - q_j q_j\t\right) \right) a_i\]
+  \end{minipage}
+  \vfill
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  \begin{calculation}[\calciff]
+    v_i = a_i - \sum_{j=1}^{i-1} q_j q_j\t a_i
+    \step{Distributividade}
+    v_i = \left(I - \sum_{j=1}^{i-1} q_j q_j\t \right) a_i
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  \begin{minipage}[t]{0.45\textwidth}
+    \[v_i = \left(I - \sum_{j=1}^{i-1} q_j q_j\t \right) a_i\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    \[v_i = \left(\prod_{j=i-1}^{1} \left(I - q_j q_j\t\right) \right) a_i\]
+  \end{minipage}
+  \vfill
+  \begin{minipage}[t]{0.45\textwidth}
+    \[I - \sum_{j=1}^{i-1} q_j q_j\t\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    \[\prod_{j=i-1}^{1} \left(I - q_j q_j\t\right)\]
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  \begin{center}
+    É relativamente fácil mostrar por indução que essas duas matrizes são iguais sob a hipótese do algoritmo de Gram-Schmidt estar correto.
+  \end{center}
+  \pause
+  \vspace{0.5cm}
+  \begin{center}
+    Mas qual é a graça? =)
+  \end{center}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  Caso $i=1$:
+  \begin{calculation}[=]
+    I - \sum_{j=1}^{i-1} q_j q_j\t
+    \step{$\displaystyle\sum_{j=1}^{0} q_j q_j\t = 0$}
+    I
+    \step{$\displaystyle\prod_{j=0}^{1} \left(I - q_j q_j\t\right) = I$}
+    \prod_{j=i-1}^{1} \left(I - q_j q_j\t\right)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  Hipótese de Indução:
+  \begin{calculation}[=]
+    I - \sum_{j=1}^{i-1} q_j q_j\t
+    \step{Hipótese de Indução}
+    \prod_{j=i-1}^{1} \left(I - q_j q_j\t\right)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  Passo Indutivo:
+  \begin{calculation}[=]
+    \prod_{j=i}^{1} \left(I - q_j q_j\t\right)
+    \step{Reindexação do Produtório}
+    \left(I - q_{i} q_{i}\t\right) \prod_{j=i-1}^{1} \left(I - q_j q_j\t\right)
+    \step{Hipótese de Indução}
+    \left(I - q_{i} q_{i}\t\right) \left(I - \sum_{j=1}^{i-1} q_j q_j\t\right)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  \vspace{-1cm}
+  \begin{calculation}[=]
+    \step{Distributividade}
+    I^2 - \left(\sum_{j=1}^{i-1} q_j q_j\t\right) - q_{i} q_{i}\t + \left(\sum_{j=1}^{i-1} q_j q_j\t q_{i+1} q_{i+1}\t\right)
+    \step{$q_j\t q_{i} = 0$ e $I^2 = I$}
+    I - \left(\sum_{j=1}^{i-1} q_j q_j\t\right) - q_{i} q_{i}\t
+    \step{Reindexação do Somatório}
+    I - \sum_{j=1}^{i} q_j q_j\t
+  \end{calculation}
+  \qed
+\end{frame}
+
+\begin{frame}{Gram-Schmidt}
+  \begin{center}
+    Além de ser uma prova bem cuidadosa com os índices, perceba que precisamos assumir que $q_i\t q_j = 0$ para todo $i \neq j$.
+  \end{center}
+  \pause
+  \vspace{0.3cm}
+  \begin{center}
+    Não só isso, mas, assim como no produto interno, tivemos que sair da implementação computacional e voltar para as definições algébricas dos algoritmos para estarmos em uma linguagem plausível para realizar a demonstração.
+  \end{center}
+\end{frame}
