@@ -1,0 +1,67 @@
+
+\begin{frame}[fragile]{Exemplo (Sequência de Fibonacci)}
+  \begin{minipage}[t]{0.45\textwidth}
+    Fibonacci em Haskell:
+    \vspace{0.2cm}
+      \begin{code}
+f = 0 : g
+g = 1 : zipWith (+) f g
+  \end{code}
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Fibonacci em Stream Calculus:
+    \vspace{0.2cm}
+    \begin{code}
+$f$ = $0 : g$
+$g$ = $1 : f + g$
+    \end{code}
+  \end{minipage}
+  \vfill
+  \pause
+  Definimos as operações ($+$), ($-$), ($\cdot$) e ($/$) índice-a-índice, como \var{zipWith}s em Haskell.
+\end{frame}
+
+\begin{frame}[fragile]{Stream Calculus}
+  Definimos operadores ``acumuladores'':
+  \vfill
+  \pause
+  \begin{minipage}[t]{0.45\textwidth}
+    Operador $\Sigma$:
+    \vspace{0.1cm}
+      \[\Sigma a = (0 : a + \Sigma a)\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Operador $\Pi$:
+    \vspace{0.1cm}
+    \[\Pi a = (1 : a \cdot \Pi a)\]
+  \end{minipage}
+  \vfill
+  \pause
+  \begin{minipage}[t]{0.45\textwidth}
+    Propriedade Universal do $\Sigma$:
+    \vspace{0.1cm}
+      \[b = \Sigma a \iff b = (0 : a + b)\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Propriedade Universal do $\Pi$:
+    \vspace{0.1cm}
+    \[b = \Pi a \iff  b = (1 : a \cdot b)\]
+  \end{minipage}
+  \vfill
+  \pause
+  \begin{center}
+    Equivalentes à \var{scanl}s em Haskell.
+  \end{center}
+\end{frame}
