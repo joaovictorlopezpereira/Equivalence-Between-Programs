@@ -67,9 +67,13 @@ end
     \vspace{0.5cm}
     \begin{code}
 function dotprod2(x, y)
+    n = length(x)
+    if (n == 0)
+        return 0
+    end
     return x[1] * y[1] +
-           dotprod2(x[2:end],
-                    y[2:end])
+           dotprod2(x[2:n],
+                    y[2:n])
 end
     \end{code}
   \end{minipage}
@@ -83,7 +87,7 @@ end
   \vspace{0.5cm}
 
   \begin{itemize}
-    \item Não é óbvio; \pause \\[0.2cm]
+    \item Não é óbvio (de imediato); \pause \\[0.2cm]
     \item A linguagem utilizada não ajuda muito; \pause \\[0.2cm]
     \item O esperado é ambos os alunos voltarem para a linguagem matemática para se convencerem da igualdade.
   \end{itemize}
