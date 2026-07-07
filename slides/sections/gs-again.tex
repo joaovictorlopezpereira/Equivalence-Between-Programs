@@ -1,0 +1,116 @@
+
+\begin{frame}[fragile]{Gram-Schmidt Once Again}
+  \begin{minipage}[t]{0.45\textwidth}
+    Gram-Schmidt Clássico:
+    \vspace{0.2cm}
+    \begin{code}
+function Gram-Schmidt-C($A$)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t a_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return $Q$
+end
+    \end{code}
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Gram-Schmidt Modificado:
+    \vspace{0.2cm}
+    \begin{code}
+function Gram-Schmidt-M($A$)
+    for $i$ in $1:n$
+        $v_i$ = $a_i$
+        for $j$ in $1:i-1$
+            $v_i$ = $v_i - q_j q_j\t v_i$
+        end
+        $q_i$ = $v_i / \norm{v_i}$
+    end
+    return $Q$
+end
+    \end{code}
+  \end{minipage}
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]{Gram-Schmidt Once Again}
+  \begin{minipage}[t]{0.45\textwidth}
+    Gram-Schmidt Clássico:
+    \vspace{0.2cm}
+    \begin{code}
+CGS $a$ = $q$
+    where
+        $v$ = $(I - \Sigma p) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+    \end{code}
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Gram-Schmidt Modificado:
+    \vspace{0.2cm}
+    \begin{code}
+MGS $a$ = $q$
+    where
+        $v$ = $(\Pi (I - p)) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+    \end{code}
+  \end{minipage}
+  \vfill
+\end{frame}
+
+% TODO: Make a slide full of \pause running both algorithms for 2 cycles to convince the audience that they compute the same as the Julia implementation does
+\begin{frame}[fragile]{Gram-Schmidt Once Again}
+  \begin{center}
+    Exemplo de execução:
+  \end{center}
+
+  \textbf{TODO!}
+\end{frame}
+
+\begin{frame}[fragile]{Gram-Schmidt Once Again}
+  \begin{center}
+    Dados ambos esses códigos
+  \end{center}
+
+  \begin{minipage}[t]{0.45\textwidth}
+    Gram-Schmidt Clássico:
+    \vspace{0.2cm}
+    \begin{code}
+CGS $a$ = $q$
+    where
+        $v$ = $(I - \Sigma p) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+    \end{code}
+  \end{minipage}
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.50\textwidth}
+    Gram-Schmidt Modificado:
+    \vspace{0.2cm}
+    \begin{code}
+MGS $a$ = $q$
+    where
+        $v$ = $(\Pi (I - p)) a$
+        $q$ = $v / \norm{v}$
+        $p$ = $qq\t$
+    \end{code}
+  \end{minipage}
+  \vfill
+  \pause
+  \begin{center}
+    Para provarmos sua equivalência, basta provarmos que $I - \Sigma p = \Pi (I - p)$.
+  \end{center}
+\end{frame}
