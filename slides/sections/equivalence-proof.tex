@@ -1,1 +1,96 @@
 
+\begin{frame}{Prova de Equivalência}
+  Lembrando que:
+
+  \begin{minipage}[t]{0.45\textwidth}
+    Propriedade Universal do $\Pi$:
+    \vspace{0.2cm}
+    \[b = \Pi a \iff b = (1 : a \cdot b)\]
+  \end{minipage}
+  \pause
+  \hfill
+  \vrule
+  \hfill
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{calculation}[\calciff]
+      I - \Sigma p = \Pi (I - p)
+      \step{$a = (I - p)$ e $b = (I - \Sigma p)$}
+      I - \Sigma p = I : (I - p) \cdot (I - \Sigma p)
+    \end{calculation}
+  \end{minipage}
+  \vfill
+  \pause
+  \vfill
+  Ou seja, para provar que $I - \Sigma p = \Pi (I - p)$, basta provar que $I - \Sigma p = I : (I - p) \cdot (I - \Sigma p)$.
+  \vfill
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+  \begin{calculation}[=]
+    I - \Sigma p \pause
+    \step{Definição ($I$)} \pause
+    (I : I) - \Sigma p \pause
+    \step{Definição ($\Sigma$)} \pause
+    (I : I) - (0 : p + \Sigma p) \pause
+    \step{Definição ($-$)} \pause
+    (I - 0) : (I - (p + \Sigma p)) \pause
+    \step{Simplificação} \pause
+    I : (I - p - \Sigma p)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+  \begin{calculation}[=]
+    I : (I - p - \Sigma p)
+    \step{?}
+    \vphantom{a}
+    \step{?}
+    I : (I - p) \cdot (I - \Sigma p)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+  \begin{calculation}[=]
+    I : (I - p - \Sigma p)
+    \step{?}
+    \vphantom{a}
+    \step{Distributividade}
+    I : (I - p) \cdot (I - \Sigma p)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+  \begin{calculation}[=]
+    I : (I - p - \Sigma p)
+    \step{?}
+    I : (I - p - \Sigma p + p \Sigma p)
+    \step{Distributividade}
+    I : (I - p) \cdot (I - \Sigma p)
+  \end{calculation}
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+
+  \vspace{0.5cm}
+
+  \begin{calculation}[=]
+    I : (I - p - \Sigma p)
+    \step{$p \Sigma p = 0$}
+    I : (I - p - \Sigma p + p \Sigma p)
+    \step{Distributividade}
+    I : (I - p) \cdot (I - \Sigma p)
+  \end{calculation}
+
+  \pause
+
+  \begin{center}
+    Se $p \Sigma p = 0$, provamos que $I - \Sigma p = \Pi (I - p)$.
+  \end{center}
+\end{frame}
+
+\begin{frame}{Prova de Equivalência}
+  \begin{itemize}
+    \item $p \Sigma p = 0$ diz respeito à corretude do algoritmo (lembrando que $p = qq\t$); \\[0.5cm] \pause
+    \item Sabemos provar que $p \Sigma p = 0$ ao mostrar que \[p \Sigma p = \alpha \left( \Sigma p - \left( \Sigma p \right)^2 \right),\] sendo $\alpha$ uma constante, e mostrando que $\Sigma p - \left( \Sigma p \right)^2$ é igual a uma outra stream que é solução de uma recorrência que apresenta a stream nula como única solução (A prova está no relatório). \\[0.5cm]
+  \end{itemize}
+\end{frame}
