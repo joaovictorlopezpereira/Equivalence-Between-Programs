@@ -12,9 +12,13 @@ The project investigates the use of **equational reasoning** to prove the equiva
 
 ## Repository Structure
 
-* **`report/`** -- Contains the project report, which presents the theoretical background, methodology, proofs, and main results.
-* **`slides/`** -- Presentation slides that complement the report.
-* **`src/`** -- Source code with two concise implementations of `dotproduct`, illustrating the concepts discussed in the slides.
+- **`src/`** - Source code and LaTeX files:
+  - [`src/report/`](src/report/) - LaTeX source for the project report, presenting the theoretical background, methodology, proofs, and main results.
+  - [`src/slides/`](src/slides/) - LaTeX source for the presentation slides that complement the report.
+  - [`src/dotprod.hs`](src/dotprod.hs) & [`src/dotprod.jl`](src/dotprod.jl) - Concise implementations of `dotproduct` in Haskell and Julia, illustrating the concepts discussed in the slides.
+- **`build/`** - Compiled PDF outputs:
+  - [`build/report.pdf`](build/report.pdf) - Compiled project report.
+  - [`build/slides.pdf`](build/slides.pdf) - Compiled presentation slides.
 
 
 ## References
@@ -26,4 +30,3 @@ The project investigates the use of **equational reasoning** to prove the equiva
 3. Hinze, R. (2010). *Concrete Stream Calculus: An Extended Study*. *Journal of Functional Programming*, **20**(5-6), 463-535. https://doi.org/10.1017/S0956796810000213
 
 4. Trefethen, L. N., & Bau, D. (1997). *Numerical Linear Algebra*. Society for Industrial and Applied Mathematics (SIAM), Philadelphia. The Classical and Modified Gram-Schmidt algorithms are presented in Lectures 7 and 8, with a discussion of their numerical stability in Lecture 19.
-
